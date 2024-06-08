@@ -36,12 +36,12 @@ testlocation(){
   echo "Starting IO tests via the 'fio' command. This may take up to an hour or more"
   echo "depending on the size of the files being tested. Be patient!"
   echo ""
+  echo "************* Running WRITE test via fio:"
+  fio --name=write-test --rw=write --size="$FILEGB"G --directory=$TESTDIRECTORY --filename=sat6-storage-test --unlink=1
+  echo ""
   echo "************* Running READ test via fio:"
   echo ""
   fio --name=read-test --rw=read --size="$FILEGB"G --directory=$TESTDIRECTORY --filename=sat6-storage-test --unlink=1
-  echo ""
-  echo "************* Running WRITE test via fio:"
-  fio --name=write-test --rw=write --size="$FILEGB"G --directory=$TESTDIRECTORY --filename=sat6-storage-test --unlink=1
   echo ""
   echo "************* Running Random READ/WRITE test via fio:"
   fio --name=randrw-test --rw=randrw --size="$FILEGB"G --directory=$TESTDIRECTORY --rwmixread=80 --filename=sat6-storage-test --unlink=1
