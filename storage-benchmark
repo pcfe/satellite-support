@@ -37,16 +37,20 @@ testlocation(){
   echo "depending on the size of the files being tested. Be patient!"
   echo ""
   date
-  echo "************* Running WRITE test via fio:"
-  fio --name=write-test --rw=write --size="$FILEGB"G --directory=$TESTDIRECTORY --filename=sat6-storage-test
+  echo "************* Running bs=4m WRITE test via fio:"
+  fio --name=write-test --rw=write --size="$FILEGB"G --directory=$TESTDIRECTORY --bs=4m --filename=sat6-storage-test
   echo ""
   date
-  echo "************* Running up to 20 minutes of READ test via fio:"
+  echo "************* Running up to 20 minutes of bs=default WRITE test via fio:"
+  fio --name=write-test --rw=write --size="$FILEGB"G --directory=$TESTDIRECTORY --filename=sat6-storage-test --runtime=20m
+  echo ""
+  date
+  echo "************* Running up to 20 minutes of bs=default READ test via fio:"
   echo ""
   fio --name=read-test --rw=read --size="$FILEGB"G --directory=$TESTDIRECTORY --filename=sat6-storage-test --runtime=20m
   echo ""
   date
-  echo "************* Running up to 20 minutes of Random READ/WRITE test via fio:"
+  echo "************* Running up to 20 minutes of bs=default Random READ/WRITE test via fio:"
   fio --name=randrw-test --rw=randrw --size="$FILEGB"G --directory=$TESTDIRECTORY --rwmixread=80 --filename=sat6-storage-test --runtime=20m --unlink=1
   echo ""
   date
