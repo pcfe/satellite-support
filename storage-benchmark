@@ -46,10 +46,6 @@ testlocation(){
   echo "************* Running up to 20 minutes of Random READ/WRITE test via fio:"
   fio --name=randrw-test --rw=randrw --size="$FILEGB"G --directory=$TESTDIRECTORY --rwmixread=80 --filename=sat6-storage-test --runtime=20m --unlink=1
   echo ""
-  echo "Test complete! There is still a directory located : $TESTDIRECTORY that you"
-  echo "may want to empty of residual files, especially if you aborted a fio run."
-  echo "It currently contains the following;"
-  ls -l --human-readable $TESTDIRECTORY
 }
 
 usage(){
@@ -142,4 +138,7 @@ then
     fi
 fi
 
-echo "Finished."
+echo "Test complete! There is still a directory located : $TESTDIRECTORY that you"
+echo "may want to remove or at least empty of residual files, especially if you aborted a fio run."
+echo "It currently contains the following;"
+ls -l --human-readable $TESTDIRECTORY
