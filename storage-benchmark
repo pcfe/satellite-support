@@ -47,7 +47,9 @@ testlocation(){
   fio --name=randrw-test --rw=randrw --size="$FILEGB"G --directory=$TESTDIRECTORY --rwmixread=80 --filename=sat6-storage-test --runtime=20m --unlink=1
   echo ""
   echo "Test complete! There is still a directory located : $TESTDIRECTORY that you"
-  echo "will need to remove to run this test again."
+  echo "may want to empty of residual files, especially if you aborted a fio run."
+  echo "It currently contains the following;"
+  ls -l --human-readable $TESTDIRECTORY
 }
 
 usage(){
